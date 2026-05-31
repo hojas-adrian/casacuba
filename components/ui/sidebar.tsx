@@ -441,23 +441,28 @@ function SidebarGroupContent({
   );
 }
 
+// 1. El contenedor principal (SidebarGroup) o el Menú actúa como la lista de pestañas (TabsList)
 function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="sidebar-menu"
       data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      className={cn(
+        "inline-flex h-10 w-full items-center justify-start rounded-md bg-muted p-1 text-muted-foreground gap-1",
+        className,
+      )}
       {...props}
     />
   );
 }
 
+// 2. Cada ítem de la lista
 function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
       data-slot="sidebar-menu-item"
       data-sidebar="menu-item"
-      className={cn("group/menu-item relative", className)}
+      className={cn("group/menu-item relative flex-1", className)} // flex-1 si quieres que ocupen el mismo ancho, o quítalo si son auto-ajustables
       {...props}
     />
   );

@@ -1,5 +1,3 @@
-"use client";
-
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { RentalsSidebar } from "@/components/dashboard/sidebar";
 
