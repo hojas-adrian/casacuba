@@ -1,21 +1,17 @@
 import { type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-// Usamos la nueva convención 'proxy' que pide Next.js
+// 1. Aplicamos la recomendación: Forzamos el compilador a usar el entorno Edge
+export const runtime = "edge";
+
+// 2. Mantenemos tu función con la nueva convención 'proxy' que exige Next.js 16
 export async function proxy(request: NextRequest) {
   return await updateSession(request);
 }
 
 export const config = {
-  // Eliminamos 'runtime: "edge"' para evitar el bloqueo del compilador nativo
+  // 3. Tu matcher actual para interceptar las rutas de la app
   matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
-     */
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
