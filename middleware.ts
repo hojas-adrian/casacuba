@@ -1,11 +1,10 @@
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-// 1. Aplicamos la recomendación: Forzamos el compilador a usar el entorno Edge
-export const runtime = "edge";
+export const runtime = "edge"; // ← Agrega esta línea
 
 // 2. Mantenemos tu función con la nueva convención 'proxy' que exige Next.js 16
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   return await updateSession(request);
 }
 
