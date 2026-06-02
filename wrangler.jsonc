@@ -1,8 +1,9 @@
 {
+	
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
-	"name": "rentals",
-	"compatibility_date": "2026-06-02",
+	// wrangler.jsonc
+	"name": "casacuba",	"compatibility_date": "2026-06-02",
 	"compatibility_flags": [
 		"nodejs_compat",
 		"global_fetch_strictly_public"
