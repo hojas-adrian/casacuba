@@ -1,13 +1,13 @@
 import { type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-// CRITICO: Next.js requiere que la función exportada se llame 'middleware'
+// Volvemos al estándar nativo que Next.js y OpenNext esperan encontrar
 export async function middleware(request: NextRequest) {
   return await updateSession(request);
 }
 
 export const config = {
-  runtime: "edge", // 1. Forzamos el entorno Edge para Cloudflare Workers
+  runtime: "edge", // Crucial para que corra sobre los Workers de Cloudflare
   matcher: [
     /*
      * Match all request paths except:
