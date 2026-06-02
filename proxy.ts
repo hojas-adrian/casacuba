@@ -1,13 +1,13 @@
 import { type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-// Volvemos al estándar nativo que Next.js y OpenNext esperan encontrar
-export async function middleware(request: NextRequest) {
+// Usamos la nueva convención 'proxy' que pide Next.js
+export async function proxy(request: NextRequest) {
   return await updateSession(request);
 }
 
 export const config = {
-  runtime: "edge", // Crucial para que corra sobre los Workers de Cloudflare
+  // Eliminamos 'runtime: "edge"' para evitar el bloqueo del compilador nativo
   matcher: [
     /*
      * Match all request paths except:
